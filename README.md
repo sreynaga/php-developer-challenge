@@ -33,12 +33,15 @@
 	`0.0.0.0/api/products/{id}`
 
 	**Body -> raw -> json:**
-	{
-	    "name" : "product 1",
-	    "category" : 1,
-	    "sku" : "ABCDEF",
-	    "price" : 10.29
-	}
+	
+	<code>
+		{
+		    "name" : "product 1",
+		    "category" : 1,
+		    "sku" : "ABCDEF",
+		    "price" : 10.29
+		}
+	</code>
 
 
 Json file to import on Postman: http://shorturl.at/qLMRW
