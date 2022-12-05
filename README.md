@@ -1,6 +1,6 @@
 # PHP Developer Challenge
 
-# API RestFul Endpoints
+##### API RestFul Endpoints
 
 - List all users (**GET**)
 
@@ -14,7 +14,7 @@
 
 	`0.0.0.0/api/products`
 
-	**form-data - Body:**
+	**Body -> form-data:**
 	- name
 	- category
 	- sku
