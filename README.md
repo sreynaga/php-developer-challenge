@@ -20,11 +20,11 @@
 	- sku
 	- price
 
-- delete a product (**DELETE**)
+- Delete a product (**DELETE**)
 
 	`0.0.0.0/api/products/{id}`
 
-- list all product categories (**GET**)
+- List all product categories (**GET**)
 
 	`0.0.0.0/api/categories`
 
