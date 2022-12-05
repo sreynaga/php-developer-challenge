@@ -1,6 +1,6 @@
 # PHP Developer Challenge
 
-##### API RestFul Endpoints
+#### API RestFul Endpoints
 
 - List all users (**GET**)
 
