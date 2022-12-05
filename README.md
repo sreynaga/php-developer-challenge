@@ -41,4 +41,4 @@
 	}
 
 
-Json file to import on Postman: shorturl.at/qLMRW
+Json file to import on Postman: http://shorturl.at/qLMRW
