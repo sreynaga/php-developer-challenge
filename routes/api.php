@@ -22,9 +22,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/products', [ProductController::class, 'all']);
-Route::get('/products/{id}', [ProductController::class, 'getProduct']);
-Route::post('/products', [ProductController::class, 'store']);
-Route::put('/products/{id}', [ProductController::class, 'update']);
-Route::delete('/products/{id}', [ProductController::class, 'delete']);
-Route::get('/categories', [CategoryController::class, 'all']);
+Route::group(['middleware' => ['XSS']], function () {
+    Route::get('/products', [ProductController::class, 'all']);
+    Route::get('/products/{id}', [ProductController::class, 'getProduct']);
+    Route::post('/products', [ProductController::class, 'store']);
+    Route::put('/products/{id}', [ProductController::class, 'update']);
+    Route::delete('/products/{id}', [ProductController::class, 'delete']);
+    Route::get('/categories', [CategoryController::class, 'all']);
+});

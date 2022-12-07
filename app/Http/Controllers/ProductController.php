@@ -42,8 +42,10 @@ class ProductController extends Controller
         $response = [];
 
         try {
-            $product = new Product();
+            $this->getRequestValidation($request);
             
+            $product = new Product();
+
             $product->fill($request->all());
 
             $store = $product->save();
@@ -72,10 +74,12 @@ class ProductController extends Controller
 
         $product = Product::find($request->id);
 
-        if ($product) {
-            $product->fill($request->all());
+        try {
+            if ($product) {
+                $this->getRequestValidation($request);
 
-            try {
+                $product->fill($request->all());
+                
                 $update = $product->save();
 
                 if ($update) {
@@ -83,12 +87,12 @@ class ProductController extends Controller
                 } else {
                     $response = $this->errorHandler(404, 'An error ocurred updating the product, please try again.');
                 }
-            } catch (Exception $e) {
-                $response = $this->errorHandler(404, $e->getMessage());
+            } else {
+                $response = $this->errorHandler(404, 'Product not found.');
             }
-        } else {
-            $response = $this->errorHandler(404, 'Product not found.');
-        }     
+        } catch (Exception $e) {
+            $response = $this->errorHandler(404, $e->getMessage());
+        } 
 
         return response()->json($response);
     }
@@ -118,6 +122,22 @@ class ProductController extends Controller
         }
 
         return response()->json($response);
+    }
+
+    /**
+     * Validator for the request data
+     * 
+     * @param  \Illuminate\Http\Request $request
+     * @return array
+     */
+    private function getRequestValidation(Request $request)
+    {
+        return $request->validate([
+            'name'     => 'required|string|max:255',
+            'category' => 'required|integer',
+            'sku'      => 'required',
+            'price'    => 'required|numeric'
+        ]);
     }
 
     /**
