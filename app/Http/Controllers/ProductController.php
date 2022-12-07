@@ -41,18 +41,15 @@ class ProductController extends Controller
     {
         $response = [];
 
-        $product = new Product();
-
-        $product->name     = $request->name;
-        $product->category = $request->category;
-        $product->sku      = $request->sku;
-        $product->price    = $request->price;
-
         try {
+            $product = new Product();
+            
+            $product->fill($request->all());
+
             $store = $product->save();
 
             if ($store) {
-                $response = $this->errorHandler(200, 'Product was added succesfully.');
+                $response = $this->errorHandler(200, 'Product was added successfully.');
             } else {
                 $response = $this->errorHandler(404, 'An error ocurred adding the product, please try again.');
             }
@@ -76,10 +73,7 @@ class ProductController extends Controller
         $product = Product::find($request->id);
 
         if ($product) {
-            $product->name     = $request->name;
-            $product->category = $request->category;
-            $product->sku      = $request->sku;
-            $product->price    = $request->price;
+            $product->fill($request->all());
 
             try {
                 $update = $product->save();
